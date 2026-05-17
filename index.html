@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN GYM | Depășește-ți limitele</title>
+    <style>
+        /* --- RESETĂRI DE BAZĂ --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212; /* Dark mode */
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* --- 1. HEADER & NAVIGAȚIE (FLEXBOX) ---
+           Aici folosim Flexbox pentru a pune logo-ul în stânga și meniul în dreapta. */
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between; /* Împinge logo-ul la stânga și meniul la dreapta */
+            align-items: center; /* Centrează elementele vertical */
+            border-bottom: 3px solid #ff5722;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex; /* Flexbox din nou pentru link-urile din meniu */
+            gap: 20px; /* Spațiu între link-uri */
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #ff5722;
+        }
+
+        /* --- 2. SECTIUNEA HERO (FLEXBOX) ---
+           Folosim Flexbox pentru a centra perfect textul în mijlocul ecranului. */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column; /* Așează elementele pe verticală (titlu peste buton) */
+            justify-content: center; /* Centrare pe axa principală (verticală aici) */
+            align-items: center; /* Centrare pe axa secundară (orizontală aici) */
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: #ff5722;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #e64a19;
+            transform: translateY(-5px); /* Efect de ridicare la hover */
+        }
+
+        /* --- 3. SECTIUNEA PROGRAME (CSS GRID) ---
+           Aici folosim Grid pentru a crea carduri care se aliniază perfect.
+           Pentru profesor: Arată-i funcția 'repeat(auto-fit, minmax(...))', este tehnica supremă de Grid pentru responsive design! */
+        .sectiune-titlu {
+            text-align: center;
+            font-size: 40px;
+            margin: 60px 0 40px 0;
+            color: #ffffff;
+        }
+
+        .grid-programe {
+            display: grid;
+            /* Crează coloane care au minim 300px și maxim cât spațiu e disponibil (1fr). Se adaptează automat! */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; /* Spațiu între rânduri și coloane */
+            padding: 0 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: #1f1f1f;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .card:hover {
+            border-top: 4px solid #ff5722;
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff5722;
+        }
+
+        .card p {
+            color: #bbbbbb;
+            margin-bottom: 20px;
+        }
+
+        /* --- 4. FOOTER (FLEXBOX) --- */
+        footer {
+            margin-top: 80px;
+            background-color: #0a0a0a;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Permite elementelor să treacă pe rândul următor dacă ecranul e mic */
+        }
+
+        .footer-info {
+            color: #777;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links div {
+            width: 40px;
+            height: 40px;
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: #ff5722;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .social-links div:hover {
+            background-color: #ff5722;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<!-- BARA DE NAVIGAȚIE (FLEXBOX) -->
+<header>
+    <div class="logo">TITAN<span>GYM</span></div>
+    <ul class="nav-links">
+        <li><a href="#">Acasă</a></li>
+        <li><a href="#">Programe</a></li>
+        <li><a href="#">Antrenori</a></li>
+        <li><a href="#">Abonamente</a></li>
+    </ul>
+</header>
+
+<!-- ZONA PRINCIPALĂ DE SUS (FLEXBOX) -->
+<section class="hero">
+    <h1>Construiește-ți <span>corpul</span> perfect</h1>
+    <p style="font-size: 22px; margin-bottom: 30px; color: #ddd;">Nu lăsa pe mâine antrenamentul pe care îl poți face azi. Fără scuze.</p>
+    <a href="#" class="btn">Începe Acum</a>
+</section>
+
+<!-- ZONA DE CARDURI (CSS GRID) -->
+<h2 class="sectiune-titlu">Programele Noastre</h2>
+<section class="grid-programe">
+
+    <div class="card">
+        <h3>Bodybuilding</h3>
+        <p>Echipamente de ultimă generație și greutăți libere pentru dezvoltarea masei musculare și definire extremă.</p>
+        <a href="#" class="btn" style="padding: 10px 20px; font-size: 14px;">Vezi detalii</a>
+    </div>
+
+    <div class="card">
+        <h3>CrossFit & Functional</h3>
+        <p>Antrenamente intense care combină haltere, gimnastică și cardio pentru a-ți crește forța și rezistența fizică.</p>
+        <a href="#" class="btn" style="padding: 10px 20px; font-size: 14px;">Vezi detalii</a>
+    </div>
+
+    <div class="card">
+        <h3>Cardio Zone</h3>
+        <p>Zonă imensă dedicată aparatelor cardio: benzi de alergat, biciclete eliptice, steppere pentru arderea caloriilor.</p>
+        <a href="#" class="btn" style="padding: 10px 20px; font-size: 14px;">Vezi detalii</a>
+    </div>
+
+    <div class="card">
+        <h3>Clase de Grup / Yoga</h3>
+        <p>Sesiuni ghidate de antrenori profesioniști pentru flexibilitate, recuperare și un echilibru perfect minte-corp.</p>
+        <a href="#" class="btn" style="padding: 10px 20px; font-size: 14px;">Vezi detalii</a>
+    </div>
+
+</section>
+
+<!-- FOOTER (FLEXBOX) -->
+<footer>
+    <div class="footer-info">
+        &copy; 2024 TITAN GYM. Toate drepturile rezervate pentru Proiectul de Facultate.
+    </div>
+    <div class="social-links">
+        <div>FB</div>
+        <div>IG</div>
+        <div>YT</div>
+    </div>
+</footer>
+
+</body>
+</html>
