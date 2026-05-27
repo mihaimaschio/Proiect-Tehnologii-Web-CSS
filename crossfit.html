@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN GYM | CrossFit & Functional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ff5722;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo a { color: inherit; text-decoration: none; }
+        .logo span { color: #ffffff; }
+
+        .nav-links { display: flex; gap: 20px; list-style: none; }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover { color: #ff5722; }
+
+        .page-hero {
+            height: 50vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+            url('https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .page-hero h1 { font-size: 50px; text-transform: uppercase; margin-bottom: 15px; }
+        .page-hero h1 span { color: #ff5722; }
+        .page-hero p { font-size: 20px; color: #ccc; max-width: 700px; }
+
+        .content-section {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 0 50px;
+        }
+
+        .content-section h2 {
+            font-size: 32px;
+            color: #ff5722;
+            margin-bottom: 20px;
+        }
+
+        .content-section p {
+            color: #bbb;
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .feature-item {
+            background-color: #1f1f1f;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ff5722;
+        }
+
+        .feature-item h3 { color: #ff5722; font-size: 18px; margin-bottom: 10px; }
+        .feature-item p { color: #aaa; font-size: 15px; margin-bottom: 0; }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .schedule-table th {
+            background-color: #1f1f1f;
+            color: #ff5722;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .schedule-table td { color: #bbb; }
+        .schedule-table tr:hover td { background-color: #1a1a1a; }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover { background-color: #e64a19; transform: translateY(-5px); }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #1a1a1a;
+        }
+
+        .cta-section h2 { font-size: 32px; margin-bottom: 15px; color: #fff; }
+        .cta-section h2 span { color: #ff5722; }
+        .cta-section p { color: #aaa; font-size: 18px; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block;
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover { color: #e64a19; }
+
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-info { color: #777; }
+        .social-links { display: flex; gap: 15px; }
+
+        .social-links a {
+            width: 40px; height: 40px;
+            background-color: #1f1f1f;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 50%;
+            color: #ff5722; font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .social-links a:hover { background-color: #ff5722; color: #fff; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><a href="index.html">TITAN<span>GYM</span></a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="index.html#programe">Programe</a></li>
+        <li><a href="antrenori.html">Antrenori</a></li>
+        <li><a href="abonamente.html">Abonamente</a></li>
+    </ul>
+</header>
+
+<section class="page-hero">
+    <h1><span>CrossFit</span> & Functional</h1>
+    <p>Antrenamente intense care combină haltere, gimnastică și cardio pentru a-ți crește forța și rezistența fizică.</p>
+</section>
+
+<div class="content-section">
+    <a href="index.html#programe" class="back-link">← Înapoi la Programe</a>
+
+    <h2>Ce include programul?</h2>
+    <p>CrossFit-ul de la TITAN GYM îți oferă antrenamente variate și intense (WOD - Workout of the Day) care nu te lasă niciodată să te plafonezi. Fiecare sesiune este diferită, fiecare zi este o provocare nouă!</p>
+
+    <div class="features-grid">
+        <div class="feature-item">
+            <h3>🔥 WOD Zilnic</h3>
+            <p>Antrenamente variate în fiecare zi: nu vei face niciodată același lucru de două ori la rând.</p>
+        </div>
+        <div class="feature-item">
+            <h3>🏅 Competiții Interne</h3>
+            <p>Campionate lunare interne cu clasamente și premii pentru cei mai dedicați membri.</p>
+        </div>
+        <div class="feature-item">
+            <h3>👥 Comunitate</h3>
+            <p>Antrenamentele de grup creează o comunitate motivantă care te împinge să dai totul.</p>
+        </div>
+        <div class="feature-item">
+            <h3>⚡ Echipamente Specializate</h3>
+            <p>Rig-uri de tracțiune, corzile de battle rope, kettlebell-uri, box jump-uri și mult mai mult.</p>
+        </div>
+    </div>
+
+    <h2>Program Săptămânal</h2>
+    <table class="schedule-table">
+        <thead>
+            <tr>
+                <th>Zi</th>
+                <th>Sesiune</th>
+                <th>Oră</th>
+                <th>Antrenor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Luni</td>
+                <td>WOD - Forță & Condiționare</td>
+                <td>07:00 - 08:00 / 19:00 - 20:00</td>
+                <td>Elena Marin</td>
+            </tr>
+            <tr>
+                <td>Marți</td>
+                <td>WOD - Gimnastică & Skill</td>
+                <td>07:00 - 08:00 / 19:00 - 20:00</td>
+                <td>Elena Marin</td>
+            </tr>
+            <tr>
+                <td>Miercuri</td>
+                <td>WOD - Haltere Olimpice</td>
+                <td>07:00 - 08:00 / 19:00 - 20:00</td>
+                <td>Elena Marin</td>
+            </tr>
+            <tr>
+                <td>Joi</td>
+                <td>WOD - Rezistență & Cardio</td>
+                <td>07:00 - 08:00 / 19:00 - 20:00</td>
+                <td>Elena Marin</td>
+            </tr>
+            <tr>
+                <td>Vineri</td>
+                <td>WOD - Team / Partner Workout</td>
+                <td>07:00 - 08:00 / 19:00 - 20:00</td>
+                <td>Elena Marin</td>
+            </tr>
+            <tr>
+                <td>Sâmbătă</td>
+                <td>Open Gym & Competiții</td>
+                <td>10:00 - 12:00</td>
+                <td>Elena Marin</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<section class="cta-section">
+    <h2>Pregătit pentru <span>provocare</span>?</h2>
+    <p>Înscrie-te acum și descoperă de ce CrossFit-ul schimbă vieți!</p>
+    <a href="abonamente.html" class="btn">Vezi Abonamentele</a>
+</section>
+
+<footer>
+    <div class="footer-info">&copy; 2024 TITAN GYM. Toate drepturile rezervate pentru Proiectul de Facultate.</div>
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank" title="Facebook">FB</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">IG</a>
+        <a href="https://youtube.com" target="_blank" title="YouTube">YT</a>
+    </div>
+</footer>
+
+</body>
+</html>

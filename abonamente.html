@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN GYM | Abonamente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ff5722;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #ff5722;
+        }
+
+        /* --- HERO ABONAMENTE --- */
+        .page-hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+            url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 50px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .page-hero h1 span {
+            color: #ff5722;
+        }
+
+        .page-hero p {
+            font-size: 20px;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        /* --- GRID ABONAMENTE --- */
+        .sectiune-titlu {
+            text-align: center;
+            font-size: 40px;
+            margin: 60px 0 40px 0;
+            color: #ffffff;
+        }
+
+        .grid-abonamente {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 50px;
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+        }
+
+        .abonament-card {
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            border-top: 4px solid transparent;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            position: relative;
+        }
+
+        .abonament-card:hover {
+            transform: translateY(-8px);
+            border-top: 4px solid #ff5722;
+            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.15);
+        }
+
+        .abonament-card.popular {
+            border-top: 4px solid #ff5722;
+            box-shadow: 0 0 25px rgba(255, 87, 34, 0.2);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1px;
+            right: 20px;
+            background-color: #ff5722;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 0 0 8px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .abonament-card h3 {
+            font-size: 24px;
+            color: #ff5722;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .pret {
+            font-size: 48px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .pret span {
+            font-size: 18px;
+            font-weight: 400;
+            color: #999;
+        }
+
+        .perioada {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .beneficii {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .beneficii li {
+            padding: 8px 0;
+            color: #bbb;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 15px;
+        }
+
+        .beneficii li::before {
+            content: "✓ ";
+            color: #ff5722;
+            font-weight: bold;
+        }
+
+        .beneficii li.disabled {
+            color: #555;
+            text-decoration: line-through;
+        }
+
+        .beneficii li.disabled::before {
+            content: "✗ ";
+            color: #555;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #e64a19;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid #ff5722;
+            color: #ff5722;
+        }
+
+        .btn-outline:hover {
+            background-color: #ff5722;
+            color: white;
+        }
+
+        /* --- FAQ --- */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+            padding: 0 50px;
+        }
+
+        .faq-item {
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .faq-question:hover {
+            background-color: #2a2a2a;
+        }
+
+        .faq-question .arrow {
+            color: #ff5722;
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 25px;
+            color: #bbb;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding: 0 25px 20px 25px;
+        }
+
+        .faq-item.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        footer {
+            background-color: #0a0a0a;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-info {
+            color: #777;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: #ff5722;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: #ff5722;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><a href="index.html">TITAN<span>GYM</span></a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="index.html#programe">Programe</a></li>
+        <li><a href="antrenori.html">Antrenori</a></li>
+        <li><a href="abonamente.html" class="active">Abonamente</a></li>
+    </ul>
+</header>
+
+<section class="page-hero">
+    <h1>Alege-ți <span>abonamentul</span></h1>
+    <p>Planuri flexibile pentru orice nivel de experiență și orice buget.</p>
+</section>
+
+<h2 class="sectiune-titlu">Planurile Noastre</h2>
+<section class="grid-abonamente">
+
+    <div class="abonament-card">
+        <h3>Start</h3>
+        <div class="pret">99 <span>RON</span></div>
+        <div class="perioada">/ lună</div>
+        <ul class="beneficii">
+            <li>Acces sală fitness</li>
+            <li>Zona Cardio inclusă</li>
+            <li>Vestiar și duș</li>
+            <li class="disabled">Clase de grup</li>
+            <li class="disabled">Antrenor personal</li>
+            <li class="disabled">Plan nutrițional</li>
+        </ul>
+        <button class="btn btn-outline" onclick="alert('Îți mulțumim pentru interes! Te rugăm să ne vizitezi la recepția sălii pentru a finaliza abonamentul START.')">Alege Planul</button>
+    </div>
+
+    <div class="abonament-card popular">
+        <div class="popular-badge">⭐ Cel mai popular</div>
+        <h3>Pro</h3>
+        <div class="pret">179 <span>RON</span></div>
+        <div class="perioada">/ lună</div>
+        <ul class="beneficii">
+            <li>Acces sală fitness</li>
+            <li>Zona Cardio inclusă</li>
+            <li>Vestiar și duș</li>
+            <li>Clase de grup nelimitate</li>
+            <li>1 ședință antrenor / săpt.</li>
+            <li class="disabled">Plan nutrițional</li>
+        </ul>
+        <button class="btn" onclick="alert('Îți mulțumim pentru interes! Te rugăm să ne vizitezi la recepția sălii pentru a finaliza abonamentul PRO.')">Alege Planul</button>
+    </div>
+
+    <div class="abonament-card">
+        <h3>Elite</h3>
+        <div class="pret">299 <span>RON</span></div>
+        <div class="perioada">/ lună</div>
+        <ul class="beneficii">
+            <li>Acces sală fitness 24/7</li>
+            <li>Zona Cardio inclusă</li>
+            <li>Vestiar premium + saună</li>
+            <li>Clase de grup nelimitate</li>
+            <li>Antrenor personal dedicat</li>
+            <li>Plan nutrițional personalizat</li>
+        </ul>
+        <button class="btn btn-outline" onclick="alert('Îți mulțumim pentru interes! Te rugăm să ne vizitezi la recepția sălii pentru a finaliza abonamentul ELITE.')">Alege Planul</button>
+    </div>
+
+</section>
+
+<h2 class="sectiune-titlu">Întrebări Frecvente</h2>
+<section class="faq-section">
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Pot să schimb abonamentul în cursul lunii?</span>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+            Da, poți face upgrade la un plan superior oricând. Diferența de preț se calculează proporțional cu zilele rămase din luna curentă.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Există perioadă minimă de contract?</span>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+            Nu, toate abonamentele noastre sunt fără perioadă minimă de contract. Poți anula oricând fără penalizări.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Ce include ședința cu antrenorul personal?</span>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+            Fiecare ședință durează 60 de minute și include: evaluare fizică, program personalizat de exerciții, corecție formă și monitorizare progres.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>Pot aduce un prieten la sală?</span>
+            <span class="arrow">▼</span>
+        </div>
+        <div class="faq-answer">
+            Membrii cu abonament PRO și ELITE pot aduce un prieten gratuit o dată pe lună. Pentru membrii START, un pass de o zi costă 30 RON.
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <div class="footer-info">
+        &copy; 2024 TITAN GYM. Toate drepturile rezervate pentru Proiectul de Facultate.
+    </div>
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank" title="Facebook">FB</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">IG</a>
+        <a href="https://youtube.com" target="_blank" title="YouTube">YT</a>
+    </div>
+</footer>
+
+<script>
+    function toggleFaq(element) {
+        const faqItem = element.parentElement;
+        // Închide toate celelalte
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('open');
+            }
+        });
+        // Toggle-ul curent
+        faqItem.classList.toggle('open');
+    }
+</script>
+
+</body>
+</html>

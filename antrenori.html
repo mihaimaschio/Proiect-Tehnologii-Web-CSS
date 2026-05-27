@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TITAN GYM | Antrenori</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1f1f1f;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #ff5722;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 900;
+            color: #ff5722;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffffff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a.active {
+            color: #ff5722;
+        }
+
+        /* --- HERO ANTRENORI --- */
+        .page-hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)),
+            url('https://images.unsplash.com/photo-1571019614242-c5c085234bf2?q=80&w=2070&auto=format&fit=crop') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 50px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .page-hero h1 span {
+            color: #ff5722;
+        }
+
+        .page-hero p {
+            font-size: 20px;
+            color: #ccc;
+            max-width: 600px;
+        }
+
+        /* --- GRID ANTRENORI --- */
+        .sectiune-titlu {
+            text-align: center;
+            font-size: 40px;
+            margin: 60px 0 40px 0;
+            color: #ffffff;
+        }
+
+        .grid-antrenori {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 0 50px;
+            max-width: 1400px;
+            margin: 0 auto 60px auto;
+        }
+
+        .antrenor-card {
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .antrenor-card:hover {
+            transform: translateY(-8px);
+            border-top: 4px solid #ff5722;
+            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.15);
+        }
+
+        .antrenor-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .antrenor-info {
+            padding: 25px;
+        }
+
+        .antrenor-info h3 {
+            font-size: 22px;
+            color: #ff5722;
+            margin-bottom: 5px;
+        }
+
+        .antrenor-info .specialitate {
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .antrenor-info p {
+            color: #bbbbbb;
+            font-size: 15px;
+        }
+
+        /* --- SECȚIUNEA CTA --- */
+        .cta-section {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: #1a1a1a;
+            margin-top: 40px;
+        }
+
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta-section h2 span {
+            color: #ff5722;
+        }
+
+        .cta-section p {
+            color: #aaa;
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #ff5722;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: transform 0.3s, background-color 0.3s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: #e64a19;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            margin-top: 0;
+            background-color: #0a0a0a;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer-info {
+            color: #777;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: #1f1f1f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            color: #ff5722;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            background-color: #ff5722;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo"><a href="index.html">TITAN<span>GYM</span></a></div>
+    <ul class="nav-links">
+        <li><a href="index.html">Acasă</a></li>
+        <li><a href="index.html#programe">Programe</a></li>
+        <li><a href="antrenori.html" class="active">Antrenori</a></li>
+        <li><a href="abonamente.html">Abonamente</a></li>
+    </ul>
+</header>
+
+<section class="page-hero">
+    <h1>Echipa noastră de <span>antrenori</span></h1>
+    <p>Profesioniști certificați, dedicați să te ajute să îți atingi obiectivele fitness.</p>
+</section>
+
+<h2 class="sectiune-titlu">Cunoaște-ți Antrenorii</h2>
+<section class="grid-antrenori">
+
+    <div class="antrenor-card">
+        <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=500&auto=format&fit=crop" alt="Andrei Popescu" class="antrenor-img">
+        <div class="antrenor-info">
+            <h3>Andrei Popescu</h3>
+            <div class="specialitate">Bodybuilding & Forță</div>
+            <p>10+ ani experiență în culturism competițional. Specializat în programe de hipertrofie și transformări fizice complete.</p>
+        </div>
+    </div>
+
+    <div class="antrenor-card">
+        <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=500&auto=format&fit=crop" alt="Elena Marin" class="antrenor-img">
+        <div class="antrenor-info">
+            <h3>Elena Marin</h3>
+            <div class="specialitate">CrossFit & Functional</div>
+            <p>Certificată CrossFit Level 3. Campioană națională, aduce energia și motivația necesară pentru antrenamente intense.</p>
+        </div>
+    </div>
+
+    <div class="antrenor-card">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=500&auto=format&fit=crop" alt="Mihai Ionescu" class="antrenor-img">
+        <div class="antrenor-info">
+            <h3>Mihai Ionescu</h3>
+            <div class="specialitate">Cardio & Rezistență</div>
+            <p>Fost atlet de performanță. Specialist în programe de cardio și slăbire, cu rezultate demonstrate la sute de clienți.</p>
+        </div>
+    </div>
+
+    <div class="antrenor-card">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=500&auto=format&fit=crop" alt="Ioana Dumitrescu" class="antrenor-img">
+        <div class="antrenor-info">
+            <h3>Ioana Dumitrescu</h3>
+            <div class="specialitate">Yoga & Pilates</div>
+            <p>Instructor certificat internațional de Yoga și Pilates. Aduce calm, echilibru și flexibilitate în rutina ta zilnică.</p>
+        </div>
+    </div>
+
+</section>
+
+<section class="cta-section">
+    <h2>Vrei o ședință <span>gratuită</span>?</h2>
+    <p>Alege-ți antrenorul preferat și beneficiază de o primă ședință de evaluare complet gratuită!</p>
+    <a href="abonamente.html" class="btn">Vezi Abonamentele</a>
+</section>
+
+<footer>
+    <div class="footer-info">
+        &copy; 2024 TITAN GYM. Toate drepturile rezervate pentru Proiectul de Facultate.
+    </div>
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank" title="Facebook">FB</a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">IG</a>
+        <a href="https://youtube.com" target="_blank" title="YouTube">YT</a>
+    </div>
+</footer>
+
+</body>
+</html>
